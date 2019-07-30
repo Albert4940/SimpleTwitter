@@ -22,7 +22,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@id/ivProfileImage"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         tools:text="andey1234" />
+
+    <TextView
+        android:id="@+id/tvTimesTamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_toEndOf="@+id/tvScreenName"
+        tools:text="Tweet's time !" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -31,4 +40,6 @@
         android:layout_below="@id/tvScreenName"
         android:layout_toEndOf="@+id/ivProfileImage"
         tools:text="This is my tweets !" />
+
+
 </RelativeLayout>
