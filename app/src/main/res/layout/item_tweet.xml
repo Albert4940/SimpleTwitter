@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="?android:attr/colorButtonNormal">
+    android:background="@android:color/background_light"
+    tools:targetApi="lollipop">
+
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -39,7 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvScreenName"
         android:layout_toEndOf="@+id/ivProfileImage"
+        android:autoLink="all"
+        android:linksClickable="true"
         tools:text="This is my tweets !" />
 
-
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
 </RelativeLayout>
