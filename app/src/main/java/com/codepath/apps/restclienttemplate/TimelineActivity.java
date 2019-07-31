@@ -1,10 +1,14 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -22,6 +26,9 @@ public class TimelineActivity extends AppCompatActivity {
 
     private TwitterClient client;
     private RecyclerView rvTweets;
+    // Store a member variable for the listener
+    private EndlessRecyclerViewScrollListener scrollListener;
+    private SwipeRefreshLayout swipeContainer;
     private TweetsAdapter adapter;
     private List<Tweet> tweets;
 
@@ -30,7 +37,24 @@ public class TimelineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
         client = TwitterApp.getRestClient(this);
+        swipeContainer = findViewById(R.id.swipeContainer);
+        // Scheme colors for animation
+        swipeContainer.setColorSchemeColors(
+                getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_red_light)
+        );
 
+        // Find the toolbar view inside the activity layout
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+        // Display icon in the toolbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.twitter2);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         // Find the recy
         rvTweets = findViewById(R.id.rvTweets);
         //Initial
@@ -40,6 +64,22 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
         populateHomeTimeline();
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.d("TwitterClient","OKKKKKKKK");
+                populateHomeTimeline();
+               /* Toast.makeText(getApplicationContext(), "Works!", Toast.LENGTH_LONG).show();
+                // To keep animation for 4 seconds
+                new Handler().postDelayed(new Runnable() {
+                    @Override public void run() {
+                        // Stop animation (This will be after 3 seconds)
+                        swipeContainer.setRefreshing(false);
+                    }
+                }, 4000); *//// Delay in millis
+
+            }
+        });
     }
 
     private void populateHomeTimeline() {
@@ -49,22 +89,25 @@ public class TimelineActivity extends AppCompatActivity {
 
                // Log.d("TwitterClient", response.toString());
                // Iterate
+                List<Tweet> tweetsToAdd = new ArrayList<>();
                 for(int i=0; i<response.length(); i++){
                     try {
                         //Convert each
                         JSONObject jsonTweetObject = response.getJSONObject(i);
                         Tweet tweet = Tweet.fromJson(jsonTweetObject);
                         // Add the tweet
-                        tweets.add(tweet);
+                        tweetsToAdd.add(tweet);
+                        //tweets.add(tweet);
                         // Notify
-                        adapter.notifyItemInserted(tweets.size()-1);
+                        //adapter.notifyItemInserted(tweets.size()-1);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
 
-
-
+                adapter.clear();
+                adapter.addTweets(tweetsToAdd);
+                swipeContainer.setRefreshing(false);
 
             }
 

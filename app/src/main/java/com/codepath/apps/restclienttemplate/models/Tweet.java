@@ -9,7 +9,7 @@ public class Tweet {
     public String body;
     public long uid;
     public String createdAt;
-
+    public String display_url;
     public User user;
 
 
@@ -19,6 +19,7 @@ public class Tweet {
         tweet.uid = jsonObject.getLong("id");
         tweet.createdAt=jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+
         return tweet;
     }
 

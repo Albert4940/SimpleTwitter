@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
@@ -20,6 +21,15 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
+		// Find the toolbar view inside the activity layout
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		// Sets the Toolbar to act as the ActionBar for this Activity window.
+		// Make sure the toolbar exists in the activity and is not null
+		setSupportActionBar(toolbar);
+		// Display icon in the toolbar
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		getSupportActionBar().setLogo(R.drawable.twitter2);
+		getSupportActionBar().setDisplayUseLogoEnabled(true);
 		final SampleModel sampleModel = new SampleModel();
 		sampleModel.setName("CodePath");
 
