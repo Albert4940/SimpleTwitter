@@ -11,18 +11,29 @@
         android:id="@+id/ivProfileImageD"
         android:layout_width="65dp"
         android:layout_height="65dp"
+
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvScreenNameD"
+        android:id="@+id/nameD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@id/ivProfileImageD"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:text="name" />
+
+    <TextView
+        android:id="@+id/tvScreenNameD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@id/ivProfileImageD"
+
         tools:text="andey1234" />
 
     <TextView

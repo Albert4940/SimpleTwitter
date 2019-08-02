@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
@@ -48,8 +50,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         final Tweet tweet = tweets.get(i);
         viewHolder.tvBody.setText(tweet.body);
-        viewHolder.tvScreenName.setText(tweet.user.screenName);
-        Glide.with(context).load(tweet.user.profileImageUrl).into(viewHolder.ivProfileImage);
+        viewHolder.name.setText(tweet.user.name);
+        viewHolder.tvScreenName.setText("@"+tweet.user.screenName);
+        //Glide.with(context).load(tweet.user.profileImageUrl).into(viewHolder.ivProfileImage);
+        Glide.with(context).load(tweet.user.profileImageUrl).apply(new RequestOptions().transform(new CircleCrop())).into(viewHolder.ivProfileImage);
         viewHolder.tvTime.setText(tweet.getFormattedTimestamp(tweet.createdAt));
 
         viewHolder.containerD.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +88,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView ivProfileImage;
+        public TextView name;
         public TextView tvScreenName;
         public TextView tvBody;
         public TextView tvTime;
@@ -92,6 +97,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage=itemView.findViewById(R.id.ivProfileImage);
+            name=itemView.findViewById(R.id.name);
             tvScreenName =itemView.findViewById(R.id.tvScreenName);
             tvBody=itemView.findViewById(R.id.tvBody);
             tvTime=itemView.findViewById(R.id.tvTimesTamp);

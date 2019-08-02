@@ -16,6 +16,7 @@ import org.parceler.Parcels;
 public class DetailTweetActivity extends AppCompatActivity {
 
     private ImageView ivProfileImage;
+    private TextView tvName;
     private TextView tvScreenName;
     private TextView tvBody;
     private TextView tvTime;
@@ -27,14 +28,16 @@ public class DetailTweetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_tweet);
         //Toast.makeText(this, "okk", Toast.LENGTH_SHORT).show();
-            //ivProfileImage=findViewById(R.id.ivProfileImageD);
+            ivProfileImage=findViewById(R.id.ivProfileImageD);
+        tvName=findViewById(R.id.nameD);
            tvScreenName =findViewById(R.id.tvScreenNameD);
-           // tvBody=findViewById(R.id.tvBodyD);
-            //tvTime=findViewById(R.id.tvTimesTampD);
+           tvBody=findViewById(R.id.tvBodyD);
+            tvTime=findViewById(R.id.tvTimesTampD);
           tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweet"));
          //Toast.makeText(this,"okk", Toast.LENGTH_SHORT).show();
-        String name = getIntent().getStringExtra("name");
+       // String name = getIntent().getStringExtra("name");
       tvScreenName.setText(tweet.user.screenName);
+
        // Glide.with(this).load(tweet.user.profileImageUrl).into(ivProfileImage);
     }
 }
