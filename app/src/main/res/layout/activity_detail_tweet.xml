@@ -3,54 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:id="@+id/containerD"
-    android:background="@android:color/background_light"
-    tools:targetApi="lollipop">
+    android:layout_height="match_parent"
 
+    tools:context=".DetailTweetActivity">
 
     <ImageView
-        android:id="@+id/ivProfileImage"
+        android:id="@+id/ivProfileImageD"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dp"
-
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvScreenName"
+        android:id="@+id/tvScreenNameD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/ivProfileImage"
+        android:layout_toEndOf="@id/ivProfileImageD"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         tools:text="andey1234" />
-    
 
     <TextView
-        android:id="@+id/tvTimesTamp"
+        android:id="@+id/tvTimesTampD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_toEndOf="@+id/tvScreenName"
+        android:layout_toEndOf="@+id/tvScreenNameD"
         tools:text="Tweet's time !" />
 
     <TextView
-        android:id="@+id/tvBody"
+        android:id="@+id/tvBodyD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvScreenName"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_below="@id/tvScreenNameD"
+        android:layout_toEndOf="@+id/ivProfileImageD"
         android:autoLink="all"
         android:linksClickable="true"
         tools:text="This is my tweets !" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+
 </RelativeLayout>

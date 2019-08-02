@@ -4,8 +4,14 @@ import com.codepath.apps.restclienttemplate.TimeFormatter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+@Parcel
 public class Tweet {
+    //empty constructor for parcel
+    public Tweet() {
+    }
+
     public String body;
     public long uid;
     public String createdAt;
