@@ -58,6 +58,15 @@
         android:linksClickable="true"
         tools:text="This is my tweets !" />
 
+    <ImageView
+        android:id="@+id/ivBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/tvBody"
+        android:layout_toEndOf="@+id/ivProfileImage"
+       />
+
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
